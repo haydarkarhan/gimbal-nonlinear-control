@@ -1,0 +1,13 @@
+# Simulink / Simscape build and cache artefacts
+slprj/
+*.slxc
+codegen/
+
+# MATLAB editor backups and autosaves
+*.asv
+*.m~
+*.autosave
+
+# OS
+.DS_Store
+Thumbs.db
