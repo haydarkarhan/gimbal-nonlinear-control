@@ -30,8 +30,21 @@ Five controllers are implemented, all built on the same filtered tracking error
 | Robust, high gain | `VR = rho^2/eps * r` | exponential, then bounded |
 | Robust, high frequency | `VR = rho^2/(rho*norm(r) + eps) * r` | uniformly ultimately bounded |
 | Robust, sliding mode | `VR = rho*sign(r)` | exponential |
-| Adaptive, standard | estimate theta online, `thetad = Gamma*Y'*r` | asymptotic |
-| Adaptive, desired model comp. | regressor along the reference only | exponential |
+| Adaptive, standard | estimate theta online, `thetad = Gamma*Y'*r` | asymptotic (Barbalat) |
+| Adaptive, desired model comp. | regressor along the reference only | asymptotic (Barbalat) |
+
+The course report calls the desired-model-compensation case exponentially
+stable. It is not: its Lyapunov function carries a parameter-error term
+`0.5*thetatilde'*inv(Gamma)*thetatilde` that nothing in the bound drives down,
+so `Vdot <= -lambda_min(Kr)*norm(r)^2` does not give `Vdot <= -c*V`. The `rho*r`
+term buys robustness, not a stronger stability class. The robust rows above
+really are exponential, because their Lyapunov function is `0.5*r'*M*r` alone.
+
+Also inherited from the report: the d.m.c. implementation adds `rho*norm(r)`,
+a scalar, to both channels, where the derivation calls for the vector `rho*r`.
+The proof needs `r'*VR >= 0` and the implemented form goes negative about a
+sixth of the time. It is 0.14% of the peak torque here, so nothing measurable
+changes, but the code and the proof are not describing the same controller.
 
 ## Running it
 
