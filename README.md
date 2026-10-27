@@ -163,7 +163,10 @@ but do not mistake any of the three for a working implementation.
 
 ## References
 
-1. F. L. Lewis, D. M. Dawson, C. T. Abdallah, *Robot Manipulator Control:
-   Theory and Practice*, 2nd ed., Marcel Dekker, 2004.
-2. J.-J. E. Slotine, W. Li, *Applied Nonlinear Control*, Prentice Hall, 1991.
-3. H. K. Khalil, *Nonlinear Systems*, 3rd ed., Prentice Hall, 2002.
+1. F. L. Lewis, D. M. Dawson and C. T. Abdallah, *Robot Manipulator Control:
+   Theory and Practice*, 2nd ed. Marcel Dekker, 2004.
+2. J.-J. E. Slotine and W. Li, *Applied Nonlinear Control*. Prentice Hall, 1991.
+3. H. K. Khalil, *Nonlinear Systems*, 3rd ed. Prentice Hall, 2002.
+4. M. W. Spong, S. Hutchinson and M. Vidyasagar, *Robot Modeling and Control*.
+   Wiley, 2005.
+5. V. I. Utkin, *Sliding Modes in Control and Optimization*. Springer, 1992.
