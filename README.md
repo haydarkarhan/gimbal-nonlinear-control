@@ -118,6 +118,37 @@ docs/                      the course report
 finished: it depends on a `dxlSimLibrary` Simulink library that is not part of
 this repository, and the real system was never run.
 
+## Unfinished controllers in the model
+
+The app offers five top-level choices, but only three of them are finished.
+Two of the five — `learning` and `other` — were started and not completed, and
+their blocks still carry the labels of the methods they were going to be:
+
+| Block in the model | What the label promises | What the code actually does |
+| --- | --- | --- |
+| `Controller selector/learning` | a learning controller | identical to the robust high-gain law |
+| `other/Supertwisting` | super-twisting sliding mode | identical to the robust high-frequency law |
+| `other/RISE` | RISE | partially written, see below |
+
+`RISE` is the only one with original content. It builds a second-order filtered
+error `r = edd + alpha*ed + beta*e` and computes `M`, `C`, `G` and the
+derivatives `dM`, `dC`, `dG`, but the line that would assemble them into the
+model term `N` is commented out, so not one of those six quantities reaches the
+output. What the block returns is
+
+```matlab
+dtau = (Kr + eye(2))*r + gamma*sign(e);     % gamma = diag([1000 10000])
+```
+
+which is a sketch of the RISE structure rather than the method: the real law
+integrates `sign` of the filtered error, not of the position error, and the
+gains here were never tuned.
+
+None of the three appear in the write-up or in `simulate_gimbal.m`, and nothing
+in the results depends on them. They are left in the model because the wiring
+and the variant selection are real work and a later attempt can build on them,
+but do not mistake any of the three for a working implementation.
+
 ## Limitations
 
 - No friction. The dominant unmodelled effect in a small geared servo is almost
